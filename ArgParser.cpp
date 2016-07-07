@@ -1,6 +1,7 @@
 #include "ArgParser.hpp"
 
 #include <iostream>
+#include <sstream>
 
 void ArgParser::addParameter(AbstractArgParam *p)
 {
@@ -37,4 +38,14 @@ void ArgParser::parse(int argc, char **argv)
 			throw std::exception();
 		}
 	}
+}
+
+std::string ArgParser::help_text()
+{
+	std::ostringstream os;
+	for(std::vector<AbstractArgParam *>::iterator it = parameters.begin(); it != parameters.end(); ++it)
+	{
+		os << "\t" << (*it)->getShortOpt() << "\t- " << std::endl;
+	}
+	return os.str();
 }

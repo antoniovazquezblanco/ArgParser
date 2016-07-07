@@ -25,6 +25,12 @@ bool ArgParam<bool>::needsOpt()
 }
 
 template<>
+bool ArgParam<bool>::setOpt(char* opt)
+{
+	return false;
+}
+
+template<>
 bool ArgParam<std::string>::setOpt(char* opt)
 {
 	set = true;
@@ -45,3 +51,4 @@ T ArgParam<T>::getValue()
 }
 
 template class ArgParam<std::string>;
+template class ArgParam<bool>;
